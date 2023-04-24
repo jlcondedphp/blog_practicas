@@ -4,7 +4,7 @@
 
 
 <section class="w-full bg-gray-200 py-4 flex-row justify-center text-center">
-    <h2 class="py-4 text-3xl">Sobre mi</h2>
+    <h2 class="py-4 text-3xl">About me</h2>
     <div class="flex text-justify justify-center">
         <div class="max-w-5xl px-2">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate necessitatibus ullam commodi perferendis accusamus sint error sequi, dolorem nam, vel praesentium dignissimos nostrum quod fuga corporis asperiores laudantium, possimus veniam!
@@ -16,7 +16,7 @@
 <section class="w-full">
     <div class="flex justify-center">
         <div class="max-w-6xl text-center">
-            <h2 class="py-4 text-3xl border-solid border-gray-300 border-b-2">Ultimos posts</h2>
+            <h2 class="py-4 text-3xl border-solid border-gray-300 border-b-2">Last posts</h2>
             <div class="flex flex-wrap justify-between">
                 @foreach($posts as $post)
                 <article style="width:300px" class="text-left p-2">

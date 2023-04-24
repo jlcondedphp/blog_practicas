@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rol extends Model
+class Role extends Model
 {
     use HasFactory;
     
@@ -23,7 +23,12 @@ class Rol extends Model
      */
     public function descripcion()
     {
-        return $this->hasMany(Rol::class);
+        return $this->hasMany(Role::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 
 

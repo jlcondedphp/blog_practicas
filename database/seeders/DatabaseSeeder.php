@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'is_staff' => true,
         ]);
 
+        $this->call(RoleTableSeeder::class);
         Post::factory()->count(50)->create();
     }
 }

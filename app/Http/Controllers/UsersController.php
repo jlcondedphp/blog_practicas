@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\roleRequest;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RolesController extends Controller
+class UsersController extends Controller
 {   
     public function home()
     {
-        return view('roles/home', [
-            'roles' => role::orderBy('created_at', 'desc')->get()->take(6)
+        return view('users/home', [
+            'user' => User::orderBy('created_at', 'desc')->get()->take(6)
         ]);
     }
 
@@ -22,22 +22,22 @@ class RolesController extends Controller
      */
     public function index(Request $request)
     {
-        
+    
         abort_unless(Auth::check(), 404);
         $user = $request->user();
 
         
         if ($user->isAdmin()) {
-            $roles = Role::orderBy('name', 'desc')->get();
+            $users = User::orderBy('name', 'desc')->get();
 
         } elseif ($user->isStaff()) {
-            $roles = Role::where('user_id', $user->id)->orderBy('name', 'desc')->get();
+            $users = User::where('user_id', $user->id)->orderBy('name', 'desc')->get();
         } else {
             abort_unless(Auth::check(), 404);
         }
         
-        return view('roles.list', [
-            'roles' => $roles         
+        return view('users.list', [            
+            'users' => $users
         ]);
     }
 
@@ -48,13 +48,17 @@ class RolesController extends Controller
     {
         abort_unless(Auth::check(), 404);
         $request->user()->authorizeRoles(['is_staff', 'is_admin']);
-        return view('roles/create');
+
+        $roles = Role::all();
+        return view('users/create', [
+            'roles' => $roles
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\roleRequest  $request
+     * @param  \App\Http\Requests\userRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -64,17 +68,20 @@ class RolesController extends Controller
 
         // $request->user()->authorizeRoles(['is_staff', 'is_admin']);
 
-        $role = new Role;
-        $role->name = $request->input('name');
-        $role->description = $request->input('body');               
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email'); 
+        $user->password = $request->input('password');
+                             
+        $user->save();
+        $roles = $request->input('roles');
+        $user->roles()->sync($roles);
 
-        $res = $role->save();
-
-        if ($res) {
-            return back()->with('status', 'Role has been created sucessfully');
+        if ($user) {
+            return back()->with('status', 'Usuario has been created sucessfully');
         }
 
-        return back()->withErrors(['msg', 'There was an error saving the role, please try again later']);
+        return back()->withErrors(['msg', 'There was an error saving the Usuario, please try again later']);
     }
 
     /**
@@ -97,10 +104,14 @@ class RolesController extends Controller
     {
         abort_unless(Auth::check(), 404);
       
-        $role = Role::find($id);
-      
-        return view('roles/edit', [
-            'role' => $role
+        $user = User::find($id);       
+        $roles = Role::all();;
+       
+        
+
+        return view('users/edit', [
+            'user' => $user,
+            'roles' => $roles
         ]);
     }
 
@@ -114,20 +125,24 @@ class RolesController extends Controller
     public function update(Request $request, $id)
     {   
        
-        $role = role::find($id);
+        $user = User::find($id);
       
 
-        $role->name = $request->input('name');
-        $role->description = $request->input('body');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->role = $request->input('role');
        
 
-        $res = $role->save();
+        $res = $user->save();
+        $roles = $request->input('roles');
+        $user->roles()->sync($roles);
+               
 
         if ($res) {
-            return back()->with('status', 'role has been updated sucessfully');
+            return back()->with('status', 'user has been updated sucessfully');
         }
 
-        return back()->withErrors(['msg', 'There was an error updating the role, please try again later']);
+        return back()->withErrors(['msg', 'There was an error updating the user, please try again later']);
     }
 
      /**
@@ -140,10 +155,12 @@ class RolesController extends Controller
     public function destroy(Request $request, $id)
     {
         abort_unless(Auth::check(), 404);
-        $role = Role::find($id);
+        $user = User::find($id);
 
-        $role->delete();
+        $user->delete();
 
-        return back()->with('status', 'role has been deleted sucessfully');
+        return back()->with('status', 'user has been deleted sucessfully');
     }
+
+
 }

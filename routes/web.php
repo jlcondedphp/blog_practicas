@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::middleware();
+
+// Route::get('/admin/roles', [\App\Http\RolesController::class, 'roles'])->name('roles.home');
+
+
+
 Route::get('/', [\App\Http\Controllers\PostController::class, 'home'])->name('home');
 
 
@@ -24,11 +29,19 @@ Auth::routes();
 
 Route::post('/comment', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 
-Route::group(['middleware'=>'admin'], function () {
-    Route::resource('/admin/posts', \App\Http\Controllers\PostController::class);
-    Route::resource('/admin/roles', \App\Http\Controllers\RolesController::class);   
+Route::post('/roles', [\App\Http\Controllers\RolesController::class, 'store'])->name('roles.store');
+
+
+
+
+
+Route::group(['middleware'=>'auth'], function () {
+    Route::group(['middleware'=>'admin'], function () {
+        Route::resource('/admin/posts', \App\Http\Controllers\PostController::class);
+        Route::resource('/admin/roles', \App\Http\Controllers\RolesController::class);   
+        Route::resource('/admin/users', \App\Http\Controllers\UsersController::class);     
+    });
 });
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

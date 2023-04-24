@@ -13,7 +13,7 @@
 </head>
 
 <body>
-   
+
     <header class="w-full">
         <nav class="w-full bg-orange-300 p-1 text-white flex justify-center">
             <div class="w-full flex justify-between px-4">
