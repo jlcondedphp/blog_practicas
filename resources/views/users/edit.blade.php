@@ -18,10 +18,9 @@
                 <input class="w-full border rounded focus:outline-none focus:shadow-outline p-2 mb-4" type="text" name="email" value="{{ $user->email }}" placeholder="Write the email of the user">
                 
                 @foreach($roles as $key=>$role)
-                    <label><input type="checkbox" name="roles[]" id="{{$role->id}}" value="{{$role->id}}">{{$role->name}}</label><br>                       
-                @endforeach
+                <label><input type="checkbox" name="roles[]" id="{{$role->id}}" value="{{$role->id}}">{{$role->name}}   </label><br> 
+                @endforeach                
                 
-               
                 <input type="submit" value="SEND" class="px-4 py-2 bg-orange-300 cursor-pointer hover:bg-orange-500 font-bold w-full border rounded border-orange-300 hover:border-orange-500 text-white">
                 @if (session('status'))
                     <div class="w-full bg-green-500 p-2 text-center my-2 text-white">

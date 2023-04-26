@@ -32,9 +32,6 @@ Route::post('/comment', [\App\Http\Controllers\CommentController::class, 'store'
 Route::post('/roles', [\App\Http\Controllers\RolesController::class, 'store'])->name('roles.store');
 
 
-
-
-
 Route::group(['middleware'=>'auth'], function () {
     Route::group(['middleware'=>'admin'], function () {
         Route::resource('/admin/posts', \App\Http\Controllers\PostController::class);

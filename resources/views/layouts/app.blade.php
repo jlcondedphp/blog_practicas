@@ -18,7 +18,7 @@
         <nav class="w-full bg-orange-300 p-1 text-white flex justify-center">
             <div class="w-full flex justify-between px-4">
                 @guest
-                <ul class="flex justify-between" style="width:130px">
+                <ul class="flex justify-between" style="width:90px">
                     <li>
                         <a class="hover:text-blue-600" href="{{ route('home') }}">
                             HOME
@@ -26,30 +26,39 @@
                     </li>
                     <li>
                         <a class="hover:text-blue-600" href="{{ route('login') }}">
-                            <i class="fas fa-sign-in-alt"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:text-blue-600" href="{{ route('register') }}">
                             <i class="fas fa-user-plus"></i>
                         </a>
                     </li>
                 </ul>
                 @else
-                <ul class="flex justify-between" style="width:140px">
+                <ul class="flex justify-between" style="width:300px">
                     <li>
                         <a class="hover:text-blue-600" href="{{ route('home') }}">
                             HOME
                         </a>
                     </li>
+
+                    
                     <li>{{ Auth::user()->name }}</li>
-                    @if( Auth::user()->isAdmin() or Auth::user()->isStaff() )
+                    @if( Auth::user()->isAdmin() || Auth::user()->isStaff() )
                     <li>
-                        <a class="hover:text-blue-600" href="{{ route('posts.store') }}" title="Admin">
+                        <a class="hover:text-blue-600" href="{{ route('posts.index') }}" title="Admin">
                             <i class="fas fa-user-shield"></i>
-                        </a>
-                    </li>
+                        </a>                        
+                    </li> 
+                    <div class="group inline-block relative  hover:text-blue-600">
+                        <button class="focus:outline-none">
+                             Admin
+                        </button>
+                        <ul class="absolute hidden group-hover:block bg-white shadow-lg">
+                            <li><a href="{{ route('posts.index') }}" class="text-gray-700 hover:bg-gray-100 px-3 py-2 block">Posts</a></li>
+                            <li><a href="{{ route('roles.index') }}" class="text-gray-700 hover:bg-gray-100 px-3 py-2 block">Roles</a></li>
+                            <li><a href="{{ route('users.index') }}" class="text-gray-700 hover:bg-gray-100 px-3 py-2 block">Users</a></li>
+                        </ul>
+                    </div>    
                     @endif
+
+
                     <li>
                         <a class="hover:text-blue-600" href="{{ route('logout') }}" title="logout" class="no-underline hover:underline" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i></a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
@@ -77,6 +86,11 @@
                 </ul>
             </div>
         </nav>
+
+
+
+
+
         <div class="text-center py-8 text-4xl font-bold">
             <h1>My Laravel Blog</h1>
         </div>
@@ -94,3 +108,6 @@
 </body>
 
 </html>
+
+
+

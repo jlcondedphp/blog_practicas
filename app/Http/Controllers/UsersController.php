@@ -106,12 +106,12 @@ class UsersController extends Controller
       
         $user = User::find($id);       
         $roles = Role::all();;
-       
-        
 
         return view('users/edit', [
             'user' => $user,
             'roles' => $roles
+            
+            
         ]);
     }
 

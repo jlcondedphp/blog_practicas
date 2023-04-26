@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleTableSeeder::class);
         Post::factory()->count(50)->create();
+
+        
     }
 }
