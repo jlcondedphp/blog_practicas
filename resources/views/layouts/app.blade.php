@@ -7,11 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laravel Blog</title>
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    
+
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     @vite("resources/css/app.css")
-</head>
-
+    @livewireStyles
+    
+</head
+>
 <body>
 
     <header class="w-full">
@@ -51,6 +55,7 @@
                              Admin
                         </button>
                         <ul class="absolute hidden group-hover:block bg-white shadow-lg">
+                            <li><a href="{{ route('admin.post') }}" class="text-gray-700 hover:bg-gray-100 px-3 py-2 block">Livewire</a></li>
                             <li><a href="{{ route('posts.index') }}" class="text-gray-700 hover:bg-gray-100 px-3 py-2 block">Posts</a></li>
                             <li><a href="{{ route('roles.index') }}" class="text-gray-700 hover:bg-gray-100 px-3 py-2 block">Roles</a></li>
                             <li><a href="{{ route('users.index') }}" class="text-gray-700 hover:bg-gray-100 px-3 py-2 block">Users</a></li>
@@ -105,6 +110,7 @@
             <div class="text-lg font-bold">@LaravelBlog <a class="hover:underline" href="https://cosasdedevs.com/" target="_blank"></a></div>
         </div>
     </footer>
+    @livewireScripts
 </body>
 
 </html>

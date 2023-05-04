@@ -11,6 +11,9 @@ class Post extends Model
     use HasFactory;
     use Sluggable;
 
+    protected $fillable = ['title', 'description', 'user_id'];
+
+
     /**
      * Get the user record associated with the post.
      */
@@ -44,6 +47,6 @@ class Post extends Model
 
     public function getGetLimitBodyAttribute()
     {
-        return substr($this->body, 0, 140) . '...';
+        return substr($this->description, 0, 140) . '...';
     }
 }

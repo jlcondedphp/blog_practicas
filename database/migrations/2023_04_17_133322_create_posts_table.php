@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
 
             $table->string('title')->unique();
-            $table->string('slug')->unique();
-            $table->mediumText('body');
-            $table->boolean('is_draft')->default(false);
+            $table->string('slug')->unique()->nulleable();
+            $table->mediumText('description');
+            $table->boolean('is_draft')->default(false)->nulleable();
             
             $table->timestamps();
         });

@@ -75,7 +75,7 @@ class PostController extends Controller
 
         $post = new Post;
         $post->title = $request->input('title');
-        $post->body = $request->input('body');
+        $post->body = $request->input('description');
         $post->is_draft = $request->input('is_draft');
         $post->user()->associate($user);
 
@@ -133,7 +133,7 @@ class PostController extends Controller
         }
 
         $post->title = $request->input('title');
-        $post->body = $request->input('body');
+        $post->body = $request->input('description');
         $post->is_draft = $request->input('is_draft');
 
         $res = $post->save();

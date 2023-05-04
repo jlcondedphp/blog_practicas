@@ -14,7 +14,7 @@
             <form action="{{ route('posts.store') }}" method="post">
                 @csrf
                 <input class="w-full border rounded focus:outline-none focus:shadow-outline p-2 mb-4" type="text" name="title" value="{{ old('title') }}" placeholder="Write the title of the post">
-                <textarea class="w-full h-72 resize-none border rounded focus:outline-none focus:shadow-outline p-2 mb-4" name="body" placeholder="Write your post here" required>{{ old('body') }}</textarea>
+                <textarea class="w-full h-72 resize-none border rounded focus:outline-none focus:shadow-outline p-2 mb-4" name="description" placeholder="Write your post here" required>{{ old('body') }}</textarea>
                 <div class="mb-4">
                     <input type="hidden" name="is_draft" value="0">
                     <input type="checkbox" name="is_draft" value="1"> Is draft?

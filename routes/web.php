@@ -35,8 +35,10 @@ Route::post('/roles', [\App\Http\Controllers\RolesController::class, 'store'])->
 Route::group(['middleware'=>'auth'], function () {
     Route::group(['middleware'=>'admin'], function () {
         Route::resource('/admin/posts', \App\Http\Controllers\PostController::class);
+        Route::get('/admin/postslive', \App\Http\Livewire\PostsLive::class)->name('admin.post'); 
         Route::resource('/admin/roles', \App\Http\Controllers\RolesController::class);   
-        Route::resource('/admin/users', \App\Http\Controllers\UsersController::class);     
+        Route::resource('/admin/users', \App\Http\Controllers\UsersController::class); 
+        Route::resource('/admin/users', \App\Http\Controllers\UsersController::class);      
     });
 });
 
