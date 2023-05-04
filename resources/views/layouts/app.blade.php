@@ -52,7 +52,7 @@
                     </li> 
                     <div class="group inline-block relative  hover:text-blue-600">
                         <button class="focus:outline-none">
-                             Admin
+                             Routes
                         </button>
                         <ul class="absolute hidden group-hover:block bg-white shadow-lg">
                             <li><a href="{{ route('admin.post') }}" class="text-gray-700 hover:bg-gray-100 px-3 py-2 block">Livewire</a></li>

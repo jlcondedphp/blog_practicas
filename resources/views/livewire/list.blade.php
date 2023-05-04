@@ -42,7 +42,7 @@
                       <!--Description-->
                       <div class="max-w-full">
                         <p class="text-base font-medium tracking-wide text-gray-600 mt-1">
-                          {{ $post->body }} 
+                          {{ $post->description }} 
                         </p>
                       </div>
 
